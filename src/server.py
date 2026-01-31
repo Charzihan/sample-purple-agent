@@ -14,31 +14,31 @@ from executor import Executor
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run the A2A agent.")
-    parser.add_argument("--host", type=str, default="127.0.0.1", help="Host to bind the server")
+    parser = argparse.ArgumentParser(description="Run the Purple A2A agent for RIT classification.")
+    parser.add_argument("--host", type=str, default="0.0.0.0", help="Host to bind the server")
     parser.add_argument("--port", type=int, default=9009, help="Port to bind the server")
     parser.add_argument("--card-url", type=str, help="URL to advertise in the agent card")
     args = parser.parse_args()
 
-    # Fill in your agent card
-    # See: https://a2a-protocol.org/latest/tutorials/python/3-agent-skills-and-card/
-    
     skill = AgentSkill(
-        id="",
-        name="",
-        description="",
-        tags=[],
-        examples=[]
+        id="rit-classification",
+        name="RIT Classification",
+        description="Classifies openHAB rulesets for Rule Interaction Threats (RIT). Returns one of: WAC, SAC, WTC, STC, WCC, SCC.",
+        tags=["classification", "rit", "openhab", "smart-home", "security"],
+        examples=[
+            "Classify this ruleset for RIT threats",
+            "What type of rule interaction threat does this ruleset contain?",
+        ]
     )
 
     agent_card = AgentCard(
-        name="",
-        description="",
+        name="RIT Classification Agent",
+        description="Purple agent that classifies openHAB rulesets for Rule Interaction Threats using LLM. Supports OpenAI-compatible APIs.",
         url=args.card_url or f"http://{args.host}:{args.port}/",
         version='1.0.0',
         default_input_modes=['text'],
         default_output_modes=['text'],
-        capabilities=AgentCapabilities(streaming=True),
+        capabilities=AgentCapabilities(streaming=False),
         skills=[skill]
     )
 
