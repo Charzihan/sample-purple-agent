@@ -69,7 +69,7 @@ class Agent:
             from openai import AsyncOpenAI
             
             api_base = os.environ.get("OPENAI_API_BASE") or os.environ.get("LLM_API_BASE")
-            self.model = os.environ.get("LLM_MODEL", "gpt-4o-mini")
+            self.model = os.environ.get("LLM_MODEL", "gpt-4o")
             
             client_kwargs = {"api_key": api_key, "timeout": self.timeout}
             if api_base:
