@@ -100,7 +100,7 @@ class Agent:
         try:
             from google import genai
             
-            self.model = os.environ.get("LLM_MODEL", "gemini-2.0-flash")
+            self.model = os.environ.get("LLM_MODEL", "gemini-2.5-pro")
             self.client = genai.Client(api_key=api_key)
             self.provider = Provider.GOOGLE
             print(f"INFO: Google Gemini provider configured - model: {self.model}")
